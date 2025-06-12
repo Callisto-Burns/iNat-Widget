@@ -4,7 +4,6 @@
     console.log(username)
 
     // Optional: find a container or append directly to body
-    document.currentScript.parentNode.insertBefore(iframe, document.currentScript);
 
     fetch('widget.html')
         .then(response => response.text())
@@ -18,6 +17,8 @@
             iframe.style.height = '150px';
             iframe.srcdoc = personalizedHTML;
 
+
+            document.currentScript.parentNode.insertBefore(iframe, document.currentScript);
         })
         .catch(error => {
             console.error('Failed to load widget:', error);
