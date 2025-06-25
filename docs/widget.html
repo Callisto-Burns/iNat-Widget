@@ -1,17 +1,39 @@
-
-<div id="inat-carousel" class="carousel slide" data-ride="carousel">
-    <div id="carousel-indicators" class="carousel-indicators">
+<style>
+    .btn-custom-dark {
+        color: #182241;
+        border-color: 1px solid #182241 !important;
+        background-color: transparent;
+        border-width: 1px !important;
+    }
+    .btn-custom-dark:hover {
+        color: white;
+        background-color: #182241;
+        border-color: #182241;
+    }
+</style>
+<div id="inat-header-{{unique-id}}">
+    <h2 class="text-center fw-semibold mb-4">
+        {{carousel-title}}
+    </h2>
+</div>
+<div id="inat-carousel-{{unique-id}}" class="carousel slide" data-ride="carousel">
+    <div id="carousel-indicators-{{unique-id}}" class="carousel-indicators">
 
     </div>
-    <div id="carousel-inner" class="carousel-inner">
+    <div id="carousel-inner-{{unique-id}}" class="carousel-inner">
 
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#inat-carousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#inat-carousel-{{unique-id}}" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#inat-carousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#inat-carousel-{{unique-id}}" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+</div>
+<div id="inat-footer-{{unique-id}}" class="text-center mt-3">
+    <a href="{{see-all-href}}" class="btn btn-custom-dark">
+        See All
+    </a>
 </div>
