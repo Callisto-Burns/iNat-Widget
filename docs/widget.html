@@ -1,18 +1,24 @@
 <style>
-    .btn-custom-dark {
-        color: #182241;
-        border-color: 1px solid #182241 !important;
-        background-color: transparent;
-        border-width: 1px !important;
-    }
-    .btn-custom-dark:hover {
-        color: white;
-        background-color: #182241;
-        border-color: #182241;
-    }
+.btn-custom-dark {
+    font-family: {{font-family}};
+    color: {{font-color}};
+    border-color: 1px solid {{font-color}} !important;
+    background-color: transparent;
+    border-width: 1px !important;
+}
+.btn-custom-dark:hover {
+    font-family: {{font-family}};
+    color: white;
+    background-color: {{font-color}};
+    border-color: {{font-color}};
+}
+.h2-custom-dark {
+    font-family: {{font-family}};
+    color: {{font-color}};
+}
 </style>
 <div id="inat-header-{{unique-id}}">
-    <h2 class="text-center fw-semibold mb-4">
+    <h2 class="text-center fw-semibold mb-4 h2-custom-dark">
         {{carousel-title}}
     </h2>
 </div>
@@ -34,6 +40,6 @@
 </div>
 <div id="inat-footer-{{unique-id}}" class="text-center mt-3">
     <a href="{{see-all-href}}" class="btn btn-custom-dark">
-        See All
+        See All Observations
     </a>
 </div>

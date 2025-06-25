@@ -42,6 +42,14 @@
             return jsonObs
         }
 
+        async getProjectInfo(projectId){
+            const params = new URLSearchParams({
+                id: projectId,
+            })
+            const jsonProject = await this.get('projects', params)
+            return jsonProject
+        }
+
         async get(url, params){
             try {
                 const response = await fetch(`${this.baseURL}/${url}?${params}`)
@@ -59,9 +67,12 @@
     async function onDOMLoaded () {
 
         // get arguments from load-script tag attributes
-        const projectId = scriptElement.getAttribute('data-project-id');
-        const numObs = scriptElement.getAttribute('data-num-obs');
-        const carouselTitle = scriptElement.getAttribute('data-title')
+        const projectId = scriptElement.getAttribute('data-project-id') ?? '176528';
+        const numObs = scriptElement.getAttribute('data-num-obs') ?? '5';
+        const carouselTitle = scriptElement.getAttribute('data-title') ?? 'Untitled';
+        const carouselHeight = scriptElement.getAttribute('data-height') ?? '400';
+        const textFont = scriptElement.getAttribute('data-font') ?? 'Young Serif';
+        const textColor = scriptElement.getAttribute('data-color') ?? '#182241';
 
         // create the widget container and replace the load-script element
         const widgetContainer = document.createElement('div');
@@ -69,13 +80,16 @@
         scriptElement.replaceWith(widgetContainer);
 
         // fetch project observations data
-        let apiClient = new ApiClient()
-        let responseJson = await apiClient.getObservations(numObs, projectId)
+        const apiClient = new ApiClient()
+        const responseJson = await apiClient.getObservations(numObs, projectId)
         const obs = responseJson.results;
+        console.log(responseJson)
         console.log(obs);
 
-        // TODO: dynamically create this href to point to the main page of the project
-        let seeAllHref = "blah/blah"
+        // determine the href for the main project page
+        const projectInfoJson = await apiClient.getProjectInfo(projectId)
+        const projectSlug = projectInfoJson.results[0].slug
+        const seeAllHref = `https://www.inaturalist.org/projects/${projectSlug}`
 
         const uniqueId = Math.random().toString(36).substring(2,9);
 
@@ -85,6 +99,8 @@
         htmlText = htmlText.replace(/{{carousel-title}}/g, carouselTitle)
         htmlText = htmlText.replace(/{{see-all-href}}/g, seeAllHref)
         htmlText = htmlText.replace(/{{unique-id}}/g, uniqueId)
+        htmlText = htmlText.replace(/{{font-family}}/g, textFont)
+        htmlText = htmlText.replace(/{{font-color}}/g, textColor)
         widgetContainer.innerHTML = htmlText;
 
         // dynamically assemble the carousel
@@ -98,6 +114,9 @@
             const imageUrl = obs[i].observation_photos[0].photo.url;
             const highResImageUrl = imageUrl.replace("square", "medium");
             const obsUri = obs[i].uri;
+            const obsName = obs[i].taxon.preferred_common_name
+              || obs[i].taxon.name
+              || 'Unknown organism';
 
             const carouselItem = document.createElement('div');
             if (first_img){
@@ -114,7 +133,7 @@
             imageElement.src = highResImageUrl;
             imageElement.classList.add('d-block', 'w-100');
             imageElement.setAttribute('data-holder-rendered', 'true');
-            imageElement.setAttribute('style', 'height: 400px; object-fit: cover;')
+            imageElement.setAttribute('style', `height: ${carouselHeight}px; object-fit: cover;`)
 
             carouselItem.appendChild(linkElement);
             linkElement.appendChild(imageElement);
@@ -132,6 +151,15 @@
             }
             indicatorElement.setAttribute('aria-label', `Slide ${i+1}`);
             carouselIndicators.appendChild(indicatorElement);
+
+            // captions
+            const captionElement = document.createElement('div');
+            captionElement.classList.add('carousel-caption', 'd-none', 'd-md-block');
+            const captionText = document.createElement('h5');
+            captionText.innerHTML = obsName;
+            captionElement.appendChild(captionText)
+            carouselItem.appendChild(captionElement)
+
         }
     }
     window.addEventListener('DOMContentLoaded', onDOMLoaded)
