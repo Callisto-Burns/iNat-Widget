@@ -129,6 +129,8 @@
 
             const linkElement = document.createElement('a');
             linkElement.href = obsUri;
+            linkElement.setAttribute('target', '_blank')
+            linkElement.setAttribute('rel', 'noopener noreferrer')
             const imageElement = document.createElement('img');
             imageElement.src = highResImageUrl;
             imageElement.classList.add('d-block', 'w-100');
