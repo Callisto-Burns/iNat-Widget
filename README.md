@@ -21,5 +21,6 @@ as desired. The only required attribute is the project id.
 
 # Example
 ![Widget demo screenshot](assets/widget_demo.png)
+
 To view a live demo, visit the github pages site for this repo 
 [here](https://Callisto-Burns.github.io/iNat-Widget)
