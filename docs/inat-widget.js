@@ -76,7 +76,7 @@
 
         // create the widget container and replace the load-script element
         const widgetContainer = document.createElement('div');
-        widgetContainer.classList.add('container', 'my-5');
+        widgetContainer.setAttribute('class', 'container my-4');
         scriptElement.replaceWith(widgetContainer);
 
         // fetch project observations data
@@ -110,7 +110,7 @@
         let first_ind = true;
         for (let i = 0; i < numObs; i++){
 
-            // images
+            // images and links
             const imageUrl = obs[i].observation_photos[0].photo.url;
             const highResImageUrl = imageUrl.replace("square", "medium");
             const obsUri = obs[i].uri;
@@ -133,7 +133,7 @@
             linkElement.setAttribute('rel', 'noopener noreferrer')
             const imageElement = document.createElement('img');
             imageElement.src = highResImageUrl;
-            imageElement.classList.add('d-block', 'w-100');
+            imageElement.classList.add('d-block', 'w-100', 'shadow');
             imageElement.setAttribute('data-holder-rendered', 'true');
             imageElement.setAttribute('style', `height: ${carouselHeight}px; object-fit: cover;`)
 

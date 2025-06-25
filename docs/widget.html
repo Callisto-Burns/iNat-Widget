@@ -1,24 +1,24 @@
 <style>
-.btn-custom-dark {
+.btn-custom-dark-{{unique-id}} {
     font-family: {{font-family}};
     color: {{font-color}};
     border-color: 1px solid {{font-color}} !important;
     background-color: transparent;
     border-width: 1px !important;
 }
-.btn-custom-dark:hover {
+.btn-custom-dark-{{unique-id}}:hover {
     font-family: {{font-family}};
     color: white;
     background-color: {{font-color}};
     border-color: {{font-color}};
 }
-.h2-custom-dark {
+.h2-custom-dark-{{unique-id}} {
     font-family: {{font-family}};
     color: {{font-color}};
 }
 </style>
 <div id="inat-header-{{unique-id}}">
-    <h2 class="text-center fw-semibold mb-4 h2-custom-dark">
+    <h2 class="text-center fw-semibold p-1 mb-2 h2-custom-dark-{{unique-id}} shadow">
         {{carousel-title}}
     </h2>
 </div>
@@ -38,8 +38,9 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div id="inat-footer-{{unique-id}}" class="text-center mt-3">
-    <a href="{{see-all-href}}" target="_blank" rel="noopener noreferrer" class="btn btn-custom-dark">
+<div id="inat-footer-{{unique-id}}" class="text-center mt-2">
+    <a href="{{see-all-href}}" target="_blank" rel="noopener noreferrer" 
+        class="btn btn-custom-dark-{{unique-id}} rounded shadow">
         See All Observations
     </a>
 </div>
