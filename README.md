@@ -16,10 +16,15 @@ as desired. The only required attribute is the project id.
     data-title="TITLE"
     data-color="limegreen"
     data-height="350"
+    date-image-size="medium"
     data-font="Young Serif"></script>
 ```
+Available image sizes are square, small, medium, and large.
 
-# Example
+Multiple instances of the widget may be easily added to your website that each
+link to separate projects if desired.
+
+# Demo
 ![Widget demo screenshot](assets/widget_demo.png)
 
 To view a live demo, visit the github pages site for this repo 

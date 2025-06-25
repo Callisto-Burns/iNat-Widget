@@ -73,6 +73,7 @@
         const carouselHeight = scriptElement.getAttribute('data-height') ?? '400';
         const textFont = scriptElement.getAttribute('data-font') ?? 'Young Serif';
         const textColor = scriptElement.getAttribute('data-color') ?? '#182241';
+        const imageSize = scriptElement.getAttribute('data-image-size') ?? 'medium';
 
         // create the widget container and replace the load-script element
         const widgetContainer = document.createElement('div');
@@ -112,7 +113,7 @@
 
             // images and links
             const imageUrl = obs[i].observation_photos[0].photo.url;
-            const highResImageUrl = imageUrl.replace("square", "medium");
+            const highResImageUrl = imageUrl.replace("square", imageSize);
             const obsUri = obs[i].uri;
             const obsName = obs[i].taxon.preferred_common_name
               || obs[i].taxon.name
